@@ -1,9 +1,13 @@
+'use client'
+import { useState } from "react";
+import ModalUpdate from "@/app/components/ModalUpdate/ModalUpdate";
 import Logo from "../../../assets/logo.svg";
 import UserLogo from "../../../assets/userLogo.svg";
 import LogoutIcon from "../../../assets/logoutIcon.svg";
 import ImageIlustrate from "../../../assets/imageIlustrate.svg";
 
 export default function Dashboard(){
+    const[showModal, setShowModal] = useState(false);
 
     return(
         
@@ -20,6 +24,7 @@ export default function Dashboard(){
                 src={UserLogo} 
                 alt="Image of user logotype" 
                 className="cursor-pointer"
+                onClick={()=>{setShowModal(!showModal)}}
                 />
 
                 <p className="mr-2">name</p>
@@ -42,6 +47,8 @@ export default function Dashboard(){
             />
 
         </section>
+
+        {showModal && <ModalUpdate/>}
 
     </main>
 
