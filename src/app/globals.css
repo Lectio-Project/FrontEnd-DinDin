@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.gradient-custom {
+  background: linear-gradient(90.23deg, #05EDE3 0.02%, #645FFB 99.63%);
+}
