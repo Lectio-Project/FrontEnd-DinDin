@@ -1,11 +1,22 @@
-import Input from '@/app/components/Input/Input';
 import Button from '@/app/components/Button/Button';
+import Input from '@/app/components/Input/Input';
+import Link from 'next/link';
+import Background from '../../../assets/background.svg';
+import Logo from '../../../assets/logo.svg';
 
 export default function SignUp() {
     return (
-        <main className="flex justify-center items-center justify-center h-screen w-screen">
-            <section className="flex flex-col items-center justify-between w-5/12 border">
-                <h3 className="text-3xl text-indigo-500 font-semibold mt-10 mb-10">
+        <main
+            className="flex flex-col justify-center items-center h-screen w-screen bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${Background})` }}
+        >
+            <img
+                className="self-start w-44 ml-16 mb-2.5"
+                src={Logo}
+                alt="Logo with the outline of a hexagon with a white line inside and a dark blue line outside, accompanied by the word Dindin"
+            />
+            <section className="flex flex-col items-center justify-between w-4/12 h-fit border bg-white">
+                <h3 className="text-28 text-primary-lilac font-semibold mt-10 mb-8">
                     Cadastre-se
                 </h3>
                 <form className="flex flex-col items-center w-10/12 gap-7">
@@ -36,12 +47,14 @@ export default function SignUp() {
                     <Button
                         title="Cadastrar"
                         type="submit"
-                        className="w-full mt-3 mb-3 "
+                        className="w-full mt-3 mb-2"
                     />
                 </form>
-                <h4 className="text-sm text-indigo-500 font-medium mb-10">
-                    Já tem cadastro? Clique aqui!
-                </h4>
+                <Link href="/" className="mb-10">
+                    <span className="text-sm text-primary-lilac font-bold font-secondary">
+                        Já tem cadastro? Clique aqui!
+                    </span>
+                </Link>
             </section>
         </main>
     );
