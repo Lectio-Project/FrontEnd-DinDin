@@ -1,7 +1,8 @@
 import Input from "@/app/components/Input/Input";
 import Button from '@/app/components/Button/Button';
 import CloseIcon from "../../../assets/closeIcon.svg";
-import { useState, ChangeEvent } from "react"; 
+import { useState, ChangeEvent, FormEvent } from "react"; 
+import UpdateValidation from "@/formsValidation/UpdateValidator";
 
 
 
@@ -17,6 +18,8 @@ export default function ModalUpdate({setShowModal}:ChildProps){
         password:'',
         passwordConfirmation: ''
     })
+    
+    const { name, email, password, passwordConfirmation } = dataUpdate;
 
     const [errors, setErros] = useState({
         name: '',
@@ -29,6 +32,35 @@ export default function ModalUpdate({setShowModal}:ChildProps){
         const { name, value } = event.target;
         setDataUpdate({...dataUpdate,[name]:value})
     }
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+
+        const formattedName = name.trim();
+        const lowerCaseEmail = email.toLowerCase().trim();
+
+        try {
+            const validation = await UpdateValidation(
+                formattedName,
+                lowerCaseEmail,
+                password,
+                passwordConfirmation
+            );
+            if (Object.keys(validation).length > 0) {
+                setErros(validation);
+                return;
+            } else {
+                setErros({
+                    name: '',
+                    email: '',
+                    password: '',
+                    passwordConfirmation: ''
+                });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
 
     return(
@@ -51,42 +83,62 @@ export default function ModalUpdate({setShowModal}:ChildProps){
 
             <form 
             className=" flex  flex-col px-10 pt-0 gap-4 my-0 pb-0" 
+            onSubmit={handleSubmit}
             >
 
             <Input
             onChange={handleChange}
             name="name"
+            value={name}
             type="text"
             placeholder="Nome"
-
             />
-
+            {errors.name && (
+            <p className="flex self-start  font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                {errors.name}
+            </p>
+            )}
             <Input
             onChange={handleChange}
             name="email"
+            value={email}
             type="text"
             placeholder="E-mail"
-            
             />
-
+            {errors.email && (
+            <p className="flex self-start  font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                {errors.email}
+            </p>
+            )}
             <Input
             onChange={handleChange}
             name="password"
+            value={password}
             type="password"
             placeholder="Senha"
-            
             />
+            {errors.password && (
+            <p className="flex self-start font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                {errors.password}
+            </p>
+            )}
             <Input
             onChange={handleChange}
             name="passwordConfirmation"
+            value={passwordConfirmation}
             type="password"
             placeholder="Confirmação de senha"
-            required
+            
             />
+            {errors.passwordConfirmation && (
+            <p className="flex self-start font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                {errors.passwordConfirmation}
+            </p>
+            )}
 
 
             <div 
-            className="w-full flex justify-center items-center "
+            className="w-full flex justify-center items-center pt-5"
             >
             <Button
             title="Confirmar"
@@ -94,6 +146,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             className="w-[238px] h-[46px] "
             />
             </div>
+
             </form>
 
 
