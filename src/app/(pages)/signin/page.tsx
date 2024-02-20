@@ -1,15 +1,64 @@
+'use client'
+
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import Background from '../../../assets/background.svg';
 import Link from 'next/link';
 import Logo from '../../../assets/logo.svg';
 
+import { ChangeEvent, FormEvent, useState } from 'react';
+import SigninValidation from '@/formsValidation/SigninValidation';
+
 export default function SignIn() {
+    const [formValues, setFormValues] = useState({
+        email: '',
+        password: ''
+    });
+
+    const [errors, setErros] = useState({
+        email: '',
+        password: ''
+    });    
+
+    const { email, password } = formValues
+
+    const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+
+        setFormValues({ ...formValues, [name]: value });
+    };
+
+    const handleSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+
+        const lowerCaseEmail: string = email.toLowerCase().trim();
+
+        try {
+            const validation = await SigninValidation(
+                lowerCaseEmail,
+                password
+            );
+            if (Object.keys(validation).length > 0) {
+                setErros(validation);
+                return;
+            } else {
+                setErros({
+                    email: '',
+                    password: ''
+                });
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <main
-            className="flex flex-col justify-center items-center h-screen w-screen bg-cover bg-center bg-no-repeat"
+            className="flex flex-col justify-center items-center h-screen w-screen bg-gradient-to-br bg-cover bg-center bg-no-repeat "
             style={{ backgroundImage: `url(${Background})` }}
         >
+          
+
             <img
                 className="self-start w-44 ml-16 mb-2.5"
                 src={Logo}
@@ -34,24 +83,41 @@ export default function SignIn() {
                 </article>
 
                 <article className='flex flex-col items-center justify-between w-4/12 h-fit border bg-white'>
-                    <h3 className='text-28 text-primary-lilac font-semibold mt-12 mb-8'>
+                    <h3 className='text-[28px] text-primary-lilac font-semibold mt-12 mb-8'>
                         Login
                     </h3>
 
-                    <form className='flex flex-col items-center w-10/12 gap-7 mb-12'>
+                    <form 
+                        className='flex flex-col items-center w-10/12 gap-7 mb-12'
+                        onSubmit={handleSubmit}
+                    >
                         <Input 
                             name='email'
                             type='text'
                             placeholder='E-mail'
-                            required
+                            value={email}
+                            onChange={handleChangeInput}
                         />
+
+                        {errors.email && (
+                            <p className="flex self-start -mt-[1.7rem] -mb-[1.6rem] font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                                {errors.email}
+                            </p>
+                        )}
 
                         <Input 
                             name='password'
                             type='password'
                             placeholder='Password'
-                            required
+                            value={password}
+                            onChange={handleChangeInput}
                         />
+
+                        {errors.password && (
+                            <p className="flex self-start -mt-[1.7rem] -mb-[1.6rem] font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                                {errors.password}
+                            </p>
+                        )}
 
                         <Button 
                             className="w-full mt-12 mb-2"
