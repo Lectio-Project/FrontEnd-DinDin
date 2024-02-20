@@ -1,6 +1,7 @@
 'use client';
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
+import SignupValidation from '@/formsValidation/SignupValidation';
 import Link from 'next/link';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import Background from '../../../assets/background.svg';
@@ -8,6 +9,12 @@ import Logo from '../../../assets/logo.svg';
 
 export default function SignUp() {
     const [formValues, setFormValues] = useState({
+        name: '',
+        email: '',
+        password: '',
+        passwordConfirmation: ''
+    });
+    const [errors, setErros] = useState({
         name: '',
         email: '',
         password: '',
@@ -22,8 +29,33 @@ export default function SignUp() {
         setFormValues({ ...formValues, [name]: value });
     };
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+
+        const formattedName = name.trim();
+        const lowerCaseEmail = email.toLowerCase().trim();
+
+        try {
+            const validation = await SignupValidation(
+                formattedName,
+                lowerCaseEmail,
+                password,
+                passwordConfirmation
+            );
+            if (Object.keys(validation).length > 0) {
+                setErros(validation);
+                return;
+            } else {
+                setErros({
+                    name: '',
+                    email: '',
+                    password: '',
+                    passwordConfirmation: ''
+                });
+            }
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -52,6 +84,12 @@ export default function SignUp() {
                         onChange={handleChangeInput}
                         required
                     />
+                    {errors.name && (
+                        <p className="flex self-start -mt-[1.7rem] -mb-[1.6rem] font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                            {errors.name}
+                        </p>
+                    )}
+
                     <Input
                         name="email"
                         type="text"
@@ -60,6 +98,11 @@ export default function SignUp() {
                         onChange={handleChangeInput}
                         required
                     />
+                    {errors.email && (
+                        <p className="flex self-start -mt-[1.7rem] -mb-[1.6rem] font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                            {errors.email}
+                        </p>
+                    )}
                     <Input
                         name="password"
                         type="password"
@@ -68,6 +111,11 @@ export default function SignUp() {
                         onChange={handleChangeInput}
                         required
                     />
+                    {errors.password && (
+                        <p className="flex self-start -mt-[1.7rem] -mb-[1.6rem] font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                            {errors.password}
+                        </p>
+                    )}
                     <Input
                         name="passwordConfirmation"
                         type="password"
@@ -76,6 +124,11 @@ export default function SignUp() {
                         onChange={handleChangeInput}
                         required
                     />
+                    {errors.passwordConfirmation && (
+                        <p className="flex self-start -mt-[1.7rem] -mb-[1.6rem] font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+                            {errors.passwordConfirmation}
+                        </p>
+                    )}
                     <Button
                         title="Cadastrar"
                         type="submit"
