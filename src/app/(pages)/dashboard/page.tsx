@@ -7,12 +7,12 @@ import LogoutIcon from "../../../assets/logoutIcon.svg";
 import ImageIlustrate from "../../../assets/imageIlustrate.svg";
 
 export default function Dashboard(){
-    const[showModal, setShowModal] = useState(false);
+    const[showModal, setShowModal] = useState<boolean>(false);
 
     return(
         
-    <main className="w-screen h-screen bg-white">
-        <header className="flex justify-between items-center px-16 w-screen h-36  gradient-custom">
+    <main className="w-full h-[1024px] bg-white  box-border ">
+        <header className="flex justify-between items-center px-16 w-full h-36  gradient-custom  px-24">
             <img 
             className="mb-14" 
             src={Logo} 
@@ -39,16 +39,16 @@ export default function Dashboard(){
 
         </header>
 
-        <section className="flex w-full justify-center  my-16">
+        <section className="flex w-full justify-center  my-16 ">
             
-            <img 
+            <img className="flex justify-center w-[986px] h-[336px] "
             src={ImageIlustrate} 
             alt="illustrative picture"
             />
 
         </section>
 
-        {showModal && <ModalUpdate/>}
+        {showModal && <ModalUpdate setShowModal={setShowModal}/>}
 
     </main>
 
