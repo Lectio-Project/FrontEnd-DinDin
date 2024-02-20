@@ -57,16 +57,16 @@ export default function SignIn() {
             className="flex flex-col justify-center items-center h-screen w-screen bg-gradient-to-br bg-cover bg-center bg-no-repeat "
             style={{ backgroundImage: `url(${Background})` }}
         >
-          
+            <div className="absolute inset-0 bg-gradient-to-br from-green-200 via-blue-300 to-purple-600 opacity-30" />
 
             <img
-                className="self-start w-44 ml-16 mb-2.5"
+                className="self-start w-44 ml-16 mb-2.5 z-10"
                 src={Logo}
                 alt="Logo with the outline of a hexagon with a white line inside and a dark blue line outside, accompanied by the word Dindin"
             />
 
             <section className='flex justify-between items-center gap-48 w-full h-4/5 px-20'>
-                <article className='flex flex-col items-start gap-6 w-4/12'>
+                <article className='flex flex-col items-start gap-6 w-4/12 z-10'>
                     <h2 className='text-5xl font-bold leading-snug font-primary'>
                         Controle suas <span className='text-primary-lilac'>finanças</span>, sem planilha chata.
                     </h2>
@@ -82,7 +82,7 @@ export default function SignIn() {
                     </Link>
                 </article>
 
-                <article className='flex flex-col items-center justify-between w-4/12 h-fit border bg-white'>
+                <article className='flex flex-col items-center justify-between w-4/12 h-fit border bg-white z-10'>
                     <h3 className='text-[28px] text-primary-lilac font-semibold mt-12 mb-8'>
                         Login
                     </h3>
