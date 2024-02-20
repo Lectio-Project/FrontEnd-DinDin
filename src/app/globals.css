@@ -31,3 +31,14 @@ body {
     text-wrap: balance;
   }
 }
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.gradient-custom {
+  background: linear-gradient(90.23deg, #05EDE3 0.02%, #645FFB 99.63%);
+}
+
