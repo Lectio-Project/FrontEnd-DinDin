@@ -17,9 +17,6 @@ const config: Config = {
                 primary: ['Rubik', 'sans-serif'],
                 secondary: ['Lato', 'sans-serif']
             },
-            fontSize: {
-                28: '28px'
-            },
             colors: {
                 primary: {
                     lilac: '#7978D9'
