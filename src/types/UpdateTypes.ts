@@ -5,7 +5,15 @@ interface UpdateFormTypes {
     name: string;
     email: string;
     password: string;
-    passwordConfirm: string;
+    passwordConfirmation: string;
 }
+
+type InputEdit = {
+    name: string;
+    type: string;
+    placeholder: string;
+    required?: boolean;
+    registerTitle: string;
+};
 
 
