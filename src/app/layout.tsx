@@ -34,8 +34,8 @@ export default function RootLayout({
                 <NextAuthSessionProvider>
                     {children}
                 </NextAuthSessionProvider>
+                <Toaster richColors duration={3000} />
             </body>
-            <Toaster richColors />
         </html>
     );
 }
