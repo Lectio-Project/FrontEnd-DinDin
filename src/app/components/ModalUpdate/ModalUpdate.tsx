@@ -68,7 +68,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             
             <div className="fixed inset-0 bg-black opacity-50 w-full h-full flex justify-center"></div>
 
-        <section className="flex flex-col justify-around w-[611px] h-[770px] bg-white rounded-lg z-50 rounded-xl ">
+        <section className="flex flex-col justify-around w-[611px] h-[800px] bg-white rounded-lg z-51 rounded-xl fixed">
             <div className="flex justify-between mx-16 mt-10 mb-0">
             <h1 className="text-black font-bold text-4xl leading-10 font-primary">
                 Editar Perfil
@@ -148,6 +148,28 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             </div>
 
             </form>
+            
+            <div className="px-10 pt-5">
+            <hr className="border-gray-400"></hr>
+            </div>
+
+            <div className="flex flex-col gap-11">
+
+                <div className="pt-5">
+                <h3 className="text-black font-bold text-2xl leading-10 font-primary pl-10">
+                    Deletar conta?
+                </h3>
+                <p className="text-black font-primary pl-10">Todos os dados associados à conta serão deletados</p>
+                </div>
+
+                <div className="w-full flex justify-center items-center pb-5">
+                <Button
+                title="Deletar conta"
+                type="submit"
+                className="w-[238px] h-[46px] justify-center bg-red-500"
+                />
+                </div>
+            </div>
 
 
     </section>
