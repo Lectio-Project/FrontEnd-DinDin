@@ -78,7 +78,7 @@ export default function SignIn() {
                 setItem('token', acess_token);
                 // setItem('email', email);
 
-                return redirect('/dashboard')
+                return router.replace('/dashboard')
             }
             
             toast.success('Os dados estão corretos!');
