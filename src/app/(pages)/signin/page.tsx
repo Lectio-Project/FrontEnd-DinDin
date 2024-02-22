@@ -72,15 +72,15 @@ export default function SignIn() {
             const response = await api.post('/login', { email: lowerCaseEmail, password });
             
             if (response.status === 200) {
-                const { access_token, email } = response.data;
-                
+                const { access_token, id } = response.data;
                 setItem('token', access_token);
-                // setItem('email', email);
+                setItem('idUser', id);
 
                 toast.success('Os dados estão corretos!');
                 return router.replace("/dashboard")
             }
             
+            toast.success('Login efetuado!');
         } catch (error) {
             console.error(error);
         }

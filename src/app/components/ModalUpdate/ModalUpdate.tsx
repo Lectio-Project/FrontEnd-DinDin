@@ -1,8 +1,12 @@
+
 import Input from "@/app/components/Input/Input";
 import Button from '@/app/components/Button/Button';
 import CloseIcon from "../../../assets/closeIcon.svg";
 import { useState, ChangeEvent, FormEvent } from "react"; 
 import UpdateValidation from "@/formsValidation/UpdateValidator";
+import api from '../../../api/api';
+import { getItem } from "@/utils/storage";
+import { toast } from "sonner";
 
 
 
@@ -10,6 +14,8 @@ import UpdateValidation from "@/formsValidation/UpdateValidator";
 
 export default function ModalUpdate({setShowModal}:ChildProps){
 
+    const userId = getItem('idUser')
+    
 
 
     const [dataUpdate, setDataUpdate] = useState<UpdateFormTypes>({
@@ -57,11 +63,28 @@ export default function ModalUpdate({setShowModal}:ChildProps){
                     passwordConfirmation: ''
                 });
             }
+
+            await api.patch(`/user/${userId}`,{
+                name: dataUpdate.name,
+                email: dataUpdate.email,
+                password: dataUpdate.password,
+            },
+            {
+                headers: {
+                authorization: `Bearer ${ getItem("token") }` ,
+                },
+            }
+            )
+
+            toast.success('Atualização feita com sucesso!');
         } catch (error) {
             console.error(error);
         }
     };
 
+    function handleDelete(){
+
+    }
 
     return(
         <main  className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center z-50">

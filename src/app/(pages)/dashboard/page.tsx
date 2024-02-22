@@ -5,9 +5,18 @@ import Logo from "../../../assets/logo.svg";
 import UserLogo from "../../../assets/userLogo.svg";
 import LogoutIcon from "../../../assets/logoutIcon.svg";
 import ImageIlustrate from "../../../assets/imageIlustrate.svg";
+import { signOut } from "next-auth/react";
+// import { getServerSession } from "next-auth";
+// import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
+
 
 export default function Dashboard(){
     const[showModal, setShowModal] = useState<boolean>(false);
+
+
+    async function logout(){
+        await signOut()
+    }
 
     return(
         
@@ -27,12 +36,13 @@ export default function Dashboard(){
                 onClick={()=>{setShowModal(!showModal)}}
                 />
 
-                <p className="mr-2">name</p>
+                <p className="mr-2">nome</p>
 
                 <img 
                 src={LogoutIcon} 
                 alt="Icon logout" 
                 className="cursor-pointer"
+                onClick={()=>logout()}
                 />
 
             </div>
