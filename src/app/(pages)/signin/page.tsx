@@ -74,14 +74,14 @@ export default function SignIn() {
             console.log(response);
             
             if (response.status === 200) {
-                const { acess_token, email } = response.data;
-                setItem('token', acess_token);
-                // setItem('email', email);
+                const { access_token, id } = response.data;
+                setItem('token', access_token);
+                setItem('idUser', id);
 
                 return router.replace('/dashboard')
             }
             
-            toast.success('Os dados estão corretos!');
+            toast.success('Login efetuado!');
         } catch (error) {
             console.error(error);
         }
