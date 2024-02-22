@@ -10,9 +10,10 @@ import { toast } from 'sonner';
 
 import { ChangeEvent, FormEvent, useState } from 'react';
 import SigninValidation from '@/formsValidation/SigninValidation';
-import api from '@/services/api';
+import api from '@/api/api';
 import { setItem } from '@/utils/storage';
-import { redirect, useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
     const [formValues, setFormValues] = useState({
@@ -25,7 +26,7 @@ export default function SignIn() {
         password: ''
     });    
 
-    const router = useRouter()
+    const router = useRouter();
 
     const { email, password } = formValues
 
@@ -37,6 +38,19 @@ export default function SignIn() {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
+
+        const result = await signIn('credentials',{
+            email,
+            password,
+            redirect: false
+        })
+
+        if(result?.error){
+            console.log(result)
+            return
+        }
+
+
 
         const lowerCaseEmail: string = email.toLowerCase().trim();
 
