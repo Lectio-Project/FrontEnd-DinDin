@@ -12,7 +12,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import SigninValidation from '@/formsValidation/SigninValidation';
 import api from '@/services/api';
 import { setItem } from '@/utils/storage';
-import { redirect } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 export default function SignIn() {
     const [formValues, setFormValues] = useState({
@@ -24,6 +24,8 @@ export default function SignIn() {
         email: '',
         password: ''
     });    
+
+    const router = useRouter()
 
     const { email, password } = formValues
 
@@ -54,17 +56,17 @@ export default function SignIn() {
             }
             
             const response = await api.post('/login', { email: lowerCaseEmail, password });
-            console.log(response);
             
             if (response.status === 200) {
-                const { acess_token, email } = response.data;
-                setItem('token', acess_token);
+                const { access_token, email } = response.data;
+                
+                setItem('token', access_token);
                 // setItem('email', email);
 
-                redirect('/dashboard')
+                toast.success('Os dados estão corretos!');
+                return router.replace("/dashboard")
             }
             
-            toast.success('Os dados estão corretos!');
         } catch (error) {
             console.error(error);
         }
