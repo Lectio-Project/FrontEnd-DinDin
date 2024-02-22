@@ -6,6 +6,7 @@ import UserLogo from "../../../assets/userLogo.svg";
 import LogoutIcon from "../../../assets/logoutIcon.svg";
 import ImageIlustrate from "../../../assets/imageIlustrate.svg";
 import { signOut } from "next-auth/react";
+import { clear } from "@/utils/storage";
 
 // import { getServerSession } from "next-auth";
 // import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
@@ -16,6 +17,7 @@ export default function Dashboard(){
 
 
     async function logout(){
+        clear()
         await signOut()
     }
 
