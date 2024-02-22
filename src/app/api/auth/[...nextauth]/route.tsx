@@ -38,7 +38,7 @@ const nextAuthOptions: NextAuthOptions = {
     ],
 
     pages: {
-        signIn: '/singin'
+        signIn: '/signin'
     },
     
     callbacks: {

@@ -7,6 +7,7 @@ import UpdateValidation from "@/formsValidation/UpdateValidator";
 import api from '../../../api/api';
 import { getItem } from "@/utils/storage";
 import { toast } from "sonner";
+import { signOut } from "next-auth/react";
 
 
 
@@ -82,8 +83,18 @@ export default function ModalUpdate({setShowModal}:ChildProps){
         }
     };
 
-    function handleDelete(){
+    async function  handleDelete(){
+        try {
+            api.delete(`/delete/${userId}`,{
+                headers: {
+                authorization: `Bearer ${ getItem("token") }` ,
+                },
+            })
 
+            await signOut()
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return(
@@ -186,11 +197,14 @@ export default function ModalUpdate({setShowModal}:ChildProps){
                 </div>
 
                 <div className="w-full flex justify-center items-center pb-5">
-                <Button
-                title="Deletar conta"
-                type="submit"
-                className="w-[238px] h-[46px] justify-center bg-red-500"
-                />
+                <button
+                type="button"
+                onClick={()=>handleDelete()}
+                className="w-[238px] h-[46px] justify-center bg-red-500 flex justify-center p-[0.75rem] rounded-md font-primary font-bold text-sm bg-primary-lilac text-white hover:opacity-80 focus:opacity-80"
+                >
+                Deletar a conta
+                </button>
+
                 </div>
             </div>
 
