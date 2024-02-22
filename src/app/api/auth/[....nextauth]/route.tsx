@@ -24,14 +24,18 @@ const nextAuthOptions: NextAuthOptions = {
                     return user
                 }
 
-                return null
+                return null 
             },
 
             
         })
-    ]
+    ],
+
+    pages: {
+        signIn: '/login'
+    }
 }
 
-const handler = NextAuth()
+const handler = NextAuth(nextAuthOptions)
 
 export { handler as GET, handler as POST }
