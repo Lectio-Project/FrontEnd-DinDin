@@ -91,7 +91,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             
             <div className="fixed inset-0 bg-black opacity-50 w-full h-full flex justify-center"></div>
 
-        <section className="flex flex-col justify-around w-[611px] h-[850px] bg-white rounded-lg z-51 rounded-xl fixed">
+        <section className="flex flex-col justify-around w-[611px] h-[850px] bg-white z-51 rounded-xl fixed">
             <div className="flex justify-between mx-16 mt-10 mb-0">
             <h1 className="text-black font-bold text-4xl leading-10 font-primary">
                 Editar Perfil

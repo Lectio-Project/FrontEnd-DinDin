@@ -6,6 +6,7 @@ import UserLogo from "../../../assets/userLogo.svg";
 import LogoutIcon from "../../../assets/logoutIcon.svg";
 import ImageIlustrate from "../../../assets/imageIlustrate.svg";
 import { signOut } from "next-auth/react";
+
 // import { getServerSession } from "next-auth";
 // import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
 
@@ -21,7 +22,7 @@ export default function Dashboard(){
     return(
         
     <main className="w-full h-[1024px] bg-white  box-border ">
-        <header className="flex justify-between items-center px-16 w-full h-36  gradient-custom  px-24">
+        <header className="flex justify-between items-center w-full h-36  gradient-custom  px-24">
             <img 
             className="mb-14" 
             src={Logo} 
