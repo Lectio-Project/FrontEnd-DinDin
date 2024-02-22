@@ -46,11 +46,9 @@ export default function SignIn() {
         })
 
         if(result?.error){
-            console.log(result)
+            toast.error('O email e/ou senha são inválidos.')
             return
         }
-
-
 
         const lowerCaseEmail: string = email.toLowerCase().trim();
 
@@ -75,13 +73,12 @@ export default function SignIn() {
                 const { access_token, id } = response.data;
                 setItem('token', access_token);
                 setItem('idUser', id);
-
-                toast.success('Os dados estão corretos!');
+                
+                toast.success('Login efetuado!');
                 return router.replace("/dashboard")
-            }
-            
-            toast.success('Login efetuado!');
-        } catch (error) {
+            } 
+
+        } catch (error) {            
             console.error(error);
         }
     };
