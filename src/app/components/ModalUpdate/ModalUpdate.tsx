@@ -68,7 +68,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             
             <div className="fixed inset-0 bg-black opacity-50 w-full h-full flex justify-center"></div>
 
-        <section className="flex flex-col justify-around w-[611px] h-[800px] bg-white rounded-lg z-51 rounded-xl fixed">
+        <section className="flex flex-col justify-around w-[611px] h-[850px] bg-white rounded-lg z-51 rounded-xl fixed">
             <div className="flex justify-between mx-16 mt-10 mb-0">
             <h1 className="text-black font-bold text-4xl leading-10 font-primary">
                 Editar Perfil
@@ -94,7 +94,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             placeholder="Nome"
             />
             {errors.name && (
-            <p className="flex self-start  font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+            <p className="flex self-start -mt-4 mb-0 font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
                 {errors.name}
             </p>
             )}
@@ -106,7 +106,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             placeholder="E-mail"
             />
             {errors.email && (
-            <p className="flex self-start  font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+            <p className="flex self-start -mt-4 mb-0 font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
                 {errors.email}
             </p>
             )}
@@ -118,7 +118,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             placeholder="Senha"
             />
             {errors.password && (
-            <p className="flex self-start font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+            <p className="flex self-start -mt-4 mb-0 font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
                 {errors.password}
             </p>
             )}
@@ -131,7 +131,7 @@ export default function ModalUpdate({setShowModal}:ChildProps){
             
             />
             {errors.passwordConfirmation && (
-            <p className="flex self-start  font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
+            <p className="flex self-start -mt-4 mb-0 font-secondary text-[16px] font-normal text-red-500 leading-[1.2rem]">
                 {errors.passwordConfirmation}
             </p>
             )}
