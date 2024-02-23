@@ -1,5 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
+//Os types será reutilizado junto com os componentes
+
 type Input = {
     name: string;
     type: string;

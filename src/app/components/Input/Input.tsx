@@ -23,3 +23,5 @@ export default function Input({
         </div>
     );
 }
+
+//O componente será reutilizado

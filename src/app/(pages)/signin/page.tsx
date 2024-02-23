@@ -12,7 +12,6 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import SigninValidation from '@/formsValidation/SigninValidation';
 import api from '@/api/api';
 import { setItem } from '@/utils/storage';
-import { redirect } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
@@ -27,6 +26,9 @@ export default function SignIn() {
         password: ''
     });    
 
+    //Os hooks de useRouter será reutilizado
+    // A lib de tost será reutilizada caso necessário
+    
     const router = useRouter();
 
     const { email, password } = formValues

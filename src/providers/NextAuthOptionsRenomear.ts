@@ -1,6 +1,8 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+//O arquivo será reutilizado junto com o Nextauth
+
 export const nextAuthOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({

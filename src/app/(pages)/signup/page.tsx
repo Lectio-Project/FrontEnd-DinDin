@@ -10,6 +10,10 @@ import Background from '../../../assets/background.svg';
 import Logo from '../../../assets/logo.svg';
 import { useRouter } from 'next/navigation';
 
+
+    //Os hooks de useRouter será reutilizado
+    // A lib de tost será reutilizada caso necessário
+
 export default function SignUp() {
     const [formValues, setFormValues] = useState({
         name: '',

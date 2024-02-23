@@ -13,3 +13,5 @@ export function removeItem(key: string) {
 export function clear() {
     localStorage.clear();
 }
+
+//Pode ser reutilizado 

@@ -10,3 +10,6 @@ export default function Button({ title, type, className }: Button) {
         </button>
     );
 }
+
+
+//O componente será reutilizado

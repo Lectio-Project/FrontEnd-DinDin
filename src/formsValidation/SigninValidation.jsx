@@ -20,3 +20,5 @@ export default async function SigninValidation(
 
     return errors;
 }
+
+//O validator será reutilizado para validacoes

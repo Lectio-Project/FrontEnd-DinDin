@@ -16,3 +16,6 @@ export default async function PrivateLayout({ children }: PrivateLayoutProps){
 
 	return <>{children}</>
 }
+
+
+// A proteção de rota será reutilizada
