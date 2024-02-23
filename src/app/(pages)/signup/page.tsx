@@ -8,6 +8,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { toast } from 'sonner';
 import Background from '../../../assets/background.svg';
 import Logo from '../../../assets/logo.svg';
+import { useRouter } from 'next/navigation';
 
 export default function SignUp() {
     const [formValues, setFormValues] = useState({
@@ -22,6 +23,8 @@ export default function SignUp() {
         password: '',
         passwordConfirmation: ''
     });
+
+    const route = useRouter();
 
     const { name, email, password, passwordConfirmation } = formValues;
 
@@ -56,9 +59,12 @@ export default function SignUp() {
                 });
             }
 
-            await api.post('/sign-up', { formattedName, email: lowerCaseEmail, password });
+            await api.post('/sign-up', { name: formattedName, email: lowerCaseEmail, password });
 
             toast.success('Cadastro efetuado com sucesso!');
+
+            route.replace('/signin');
+
         } catch (error) {
             console.error(error);
         }

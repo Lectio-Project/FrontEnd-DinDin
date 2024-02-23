@@ -47,7 +47,7 @@ export default function SignIn() {
         })
 
         if(result?.error){
-            console.log(result)
+            console.error(result)
             return
         }
 
@@ -71,17 +71,17 @@ export default function SignIn() {
             }
             
             const response = await api.post('/login', { email: lowerCaseEmail, password });
-            console.log(response);
+            
             
             if (response.status === 200) {
                 const { access_token, id } = response.data;
                 setItem('token', access_token);
                 setItem('idUser', id);
 
+                toast.success('Login efetuado!');
                 return router.replace('/dashboard')
             }
             
-            toast.success('Login efetuado!');
         } catch (error) {
             console.error(error);
         }
