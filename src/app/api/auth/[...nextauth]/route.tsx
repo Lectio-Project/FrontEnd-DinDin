@@ -13,7 +13,7 @@ const nextAuthOptions: NextAuthOptions = {
             
             async authorize(credentials, req) {
 
-                const response = await fetch('http://localhost:3333/login', {
+                const response = await fetch('https://backend-dindin-q1mk.onrender.com/login', {
                     method: 'POST',
                     headers: {
                         'Content-type': 'application/json'
