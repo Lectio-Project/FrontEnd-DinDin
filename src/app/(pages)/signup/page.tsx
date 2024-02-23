@@ -1,9 +1,11 @@
 'use client';
+import api from '@/api/api';
 import Button from '@/app/components/Button/Button';
 import Input from '@/app/components/Input/Input';
 import SignupValidation from '@/formsValidation/SignupValidation';
 import Link from 'next/link';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { toast } from 'sonner';
 import Background from '../../../assets/background.svg';
 import Logo from '../../../assets/logo.svg';
 
@@ -53,6 +55,10 @@ export default function SignUp() {
                     passwordConfirmation: ''
                 });
             }
+
+            await api.post('/sign-up', { formattedName, email: lowerCaseEmail, password });
+
+            toast.success('Cadastro efetuado com sucesso!');
         } catch (error) {
             console.error(error);
         }
